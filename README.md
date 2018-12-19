@@ -12,6 +12,11 @@ Si interroga la servlet RestCall/User per qualunque crud azione, fermorestando i
 Metodo HTTP	specifico per ogni operazione CRUD, ovvero:
 Metodi:
 POST	=Create.	Crea una nuova risorsa. Necessita di (nome,cognome,email,password)
-GET	=Read.	Ottiene una risorsa esistente. Non necessita di alcun parametro per la lista completa degli utenti, mentre per interrogazione singola richiede parametro (id) di tipo int
-PUT	=Update.	Aggiorna una risorsa o ne modifica lo stato. Richiede parametri (id,nome,cognome,email,password) id int
-DELETE	=Delete.	Elimina una risorsa. Richiede parametro (id) di tipo int
+  Risponde con un messaggio di tipo testo da visualizzare.
+GET	=Read.	Ottiene una risorsa esistente. Non necessita di alcun parametro per la lista completa degli utenti, mentre per interrogazione   singola richiede parametro (id) di tipo int. Risponde con un messaggio di tipo json.
+PUT	=Update.	Aggiorna una risorsa o ne modifica lo stato. Richiede parametri (id,nome,cognome,email,password) id int.
+  Risponde con un messaggio di tipo testo da visualizzare.
+DELETE	=Delete.	Elimina una risorsa. Richiede parametro (id) di tipo int.
+  Risponde con un messaggio di tipo testo da visualizzare.
+
+
