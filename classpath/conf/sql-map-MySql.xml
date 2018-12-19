@@ -1,0 +1,19 @@
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD SQL Map Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+	<settings>
+        <setting name="jdbcTypeForNull" value="NULL"/>
+  		<setting name="defaultStatementTimeout" value="30"/>
+  		<setting name="logImpl" value="LOG4J"/>
+    </settings>
+	<typeAliases>
+ 		<typeAlias alias="ModelUser" type="com.model.ModelUser" /> 
+ 		<typeAlias alias="SQLAdapter" type="com.model.SQLAdapter" /> 
+	</typeAliases>
+	<typeHandlers>
+	</typeHandlers>
+	<mappers>
+		<mapper resource="maps/DbMySQL.xml" />
+		<mapper resource="maps/User.xml" />
+		
+	</mappers>
+</configuration>

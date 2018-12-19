@@ -1,0 +1,60 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xmlns:sws="http://www.springframework.org/schema/web-services"
+  xmlns:aop="http://www.springframework.org/schema/aop"
+  xmlns:tx="http://www.springframework.org/schema/tx"
+  xmlns:mvc="http://www.springframework.org/schema/mvc"
+  xmlns:task="http://www.springframework.org/schema/task"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	  http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+	  http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+	  http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+	  http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+	  http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd">
+  
+
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location">
+			<value>classpath:Parametri.properties</value>
+		</property>
+	</bean>
+	  
+	 <bean id="connessioneMySql" name="dataSourceMySql" class="org.apache.commons.dbcp.BasicDataSource">	    
+	    <property name="url" value="${dbMySqlStringaDiConnessione}" />
+	    <property name="username" value="${dbMySqlUser}" />
+	    <property name="password" value="${dbMySqlPassword}" />
+	    <property name="initialSize" value="2" />
+	    <property name="maxActive" value="5" />
+	    <property name="driverClassName" value="${dbMySqlDRIVER}" />
+	</bean>
+	  
+	 <bean id="TransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSourceMySql"/>
+	</bean>	
+	
+	<bean id="sqlSessionFactoryMySql" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSourceMySql" />
+		<property name="configLocation" value="classpath:conf/sql-map-MySql.xml" />
+	</bean>
+<!-- 	attenzione non carica questo sopra probabilmente non va in errore cambiando path -->
+
+
+
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="restcall.dao" />
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactoryMySql" />
+	</bean>
+	
+	  
+	  
+<!-- 	  OCCORRE UNA  No qualifying bean of type [logic.ManagerAbstractClass] is defined -->
+<!-- 	  OVVERO, SI DEVE FARE IL BEAN DI UNA CLASSE CHE ESTENDA UNA CLASSE ASTRATTA -->
+<!-- 	  	<bean class="logic.ManagerClassLoadInterface"/> -->
+
+<!-- 		da mettere: -->
+ 		<bean id="ManagerDb" class="com.logic.ManagerDB" /> 
+		<bean id="ManagerUser" class="com.logic.ManagerUser" /> 
+	  	
+	  	
+</beans>
