@@ -20,3 +20,4 @@ DELETE	=Delete.	Elimina una risorsa. Richiede parametro (id) di tipo int.
   Risponde con un messaggio di tipo testo da visualizzare.
 
 
+ps: il fremwork utilizzato è spring MVC con MyBatis
